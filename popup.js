@@ -294,7 +294,7 @@ function showStatus(message, type = '') {
 }
 
 /**
- * Execute callback with active tab
+ * Execute callback with active tab, ensuring content script is injected
  * @param {Function} callback - Callback function
  */
 function executeInActiveTab(callback) {
@@ -306,10 +306,88 @@ function executeInActiveTab(callback) {
     }
     
     if (tabs && tabs[0]) {
-      callback(tabs[0]);
+      ensureContentScriptInjected(tabs[0], callback);
     } else {
       showStatus('No active tab found', 'error');
     }
+  });
+}
+
+/**
+ * Ensure content script is injected in the tab
+ * @param {Object} tab - Chrome tab object
+ * @param {Function} callback - Callback function to execute after injection
+ */
+function ensureContentScriptInjected(tab, callback) {
+  // Skip injection for chrome:// and other restricted URLs
+  if (!canInjectIntoTab(tab)) {
+    showStatus('Cannot inject into this page', 'error');
+    return;
+  }
+
+  // Test if content script is already available
+  chrome.tabs.sendMessage(tab.id, { action: 'ping' }, (response) => {
+    if (chrome.runtime.lastError || !response) {
+      // Content script not available, inject it
+      injectContentScript(tab, callback);
+    } else {
+      // Content script available, proceed
+      callback(tab);
+    }
+  });
+}
+
+/**
+ * Check if we can inject scripts into the current tab
+ * @param {Object} tab - Chrome tab object
+ * @returns {boolean} Whether injection is allowed
+ */
+function canInjectIntoTab(tab) {
+  const url = tab.url;
+  const restrictedSchemes = ['chrome:', 'chrome-extension:', 'moz-extension:', 'edge:', 'opera:'];
+  const restrictedUrls = ['chrome.google.com/webstore'];
+  
+  return url && 
+         !restrictedSchemes.some(scheme => url.startsWith(scheme)) &&
+         !restrictedUrls.some(restricted => url.includes(restricted));
+}
+
+/**
+ * Inject content script and CSS into tab
+ * @param {Object} tab - Chrome tab object
+ * @param {Function} callback - Callback function to execute after injection
+ */
+function injectContentScript(tab, callback) {
+  showStatus('Initializing grid system...');
+  
+  // Inject CSS first
+  chrome.scripting.insertCSS({
+    target: { tabId: tab.id },
+    files: ['grid.css']
+  }, () => {
+    if (chrome.runtime.lastError) {
+      console.error('Error injecting CSS:', chrome.runtime.lastError);
+      showStatus('Error loading grid styles', 'error');
+      return;
+    }
+    
+    // Then inject JavaScript
+    chrome.scripting.executeScript({
+      target: { tabId: tab.id },
+      files: ['content.js']
+    }, () => {
+      if (chrome.runtime.lastError) {
+        console.error('Error injecting script:', chrome.runtime.lastError);
+        showStatus('Error loading grid system', 'error');
+        return;
+      }
+      
+      // Wait a moment for script to initialize, then proceed
+      setTimeout(() => {
+        showStatus(CONFIG.MESSAGES.READY);
+        callback(tab);
+      }, 100);
+    });
   });
 }
 

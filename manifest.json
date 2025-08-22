@@ -3,7 +3,7 @@
   "name": "Grid Overlay Tool",
   "version": "1.0",
   "description": "Add customizable grid overlays to any webpage for alignment checking",
-  "permissions": ["activeTab", "storage"],
+  "permissions": ["activeTab", "storage", "scripting"],
   "content_scripts": [
     {
       "matches": ["<all_urls>"],

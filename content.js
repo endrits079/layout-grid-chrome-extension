@@ -60,6 +60,11 @@ function setupMessageListener() {
   chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
     try {
       switch (message.action) {
+        case 'ping':
+          // Respond to ping to confirm content script is loaded
+          sendResponse({ success: true, loaded: true });
+          break;
+          
         case 'toggleGrid':
           toggleGrid();
           sendResponse({ visible: isGridVisible, success: true });
