@@ -53,7 +53,7 @@ A professional Chrome extension that adds customizable grid overlays to any webp
 - **Manifest Version**: 3
 - **Permissions**: activeTab, storage, scripting
 - **Content Security**: No external resources, fully self-contained
-- **Performance**: Uses CSS Grid and GPU-accelerated rendering
+- **Performance**: Uses CSS Grid
 
 ## License
 
