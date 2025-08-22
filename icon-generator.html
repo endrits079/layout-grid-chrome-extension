@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Overlay Extension Icons</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        
+        .icon-container {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .icon-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            align-items: center;
+        }
+        
+        .icon-item {
+            text-align: center;
+        }
+        
+        .icon-item h3 {
+            margin: 10px 0 5px 0;
+            color: #333;
+            font-size: 16px;
+        }
+        
+        .icon-item p {
+            margin: 0;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .download-section {
+            background: #e3f2fd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .download-section h2 {
+            margin-top: 0;
+            color: #1976D2;
+        }
+        
+        .download-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: background 0.2s;
+        }
+        
+        .download-btn:hover {
+            background: #1976D2;
+        }
+        
+        .preview-bg {
+            background: #f0f0f0;
+            border-radius: 8px;
+            padding: 20px;
+            display: inline-block;
+        }
+        
+        .size-label {
+            font-weight: 600;
+            color: #2196F3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Grid Overlay Extension Icons</h1>
+    <p>Here are the icons for your Chrome extension in different sizes. Right-click and save each icon, or use the download buttons below.</p>
+    
+    <div class="icon-container">
+        <h2>16x16 Icon (Toolbar)</h2>
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div class="preview-bg">
+                    <svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="16" height="16" fill="#2196F3" rx="2"/>
+                        <g stroke="#ffffff" stroke-width="0.5" fill="none">
+                            <line x1="4" y1="0" x2="4" y2="16"/>
+                            <line x1="8" y1="0" x2="8" y2="16"/>
+                            <line x1="12" y1="0" x2="12" y2="16"/>
+                            <line x1="0" y1="4" x2="16" y2="4"/>
+                            <line x1="0" y1="8" x2="16" y2="8"/>
+                            <line x1="0" y1="12" x2="16" y2="12"/>
+                        </g>
+                    </svg>
+                </div>
+                <h3><span class="size-label">16×16</span></h3>
+                <p>Toolbar icon (actual size)</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="icon-container">
+        <h2>48x48 Icon (Extension Management)</h2>
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div class="preview-bg">
+                    <svg width="48" height="48" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="48" height="48" fill="#2196F3" rx="6"/>
+                        <g stroke="#ffffff" stroke-width="1.5" fill="none">
+                            <line x1="12" y1="0" x2="12" y2="48"/>
+                            <line x1="24" y1="0" x2="24" y2="48"/>
+                            <line x1="36" y1="0" x2="36" y2="48"/>
+                            <line x1="0" y1="12" x2="48" y2="12"/>
+                            <line x1="0" y1="24" x2="48" y2="24"/>
+                            <line x1="0" y1="36" x2="48" y2="36"/>
+                        </g>
+                        <circle cx="24" cy="24" r="3" fill="#ffffff" opacity="0.8"/>
+                    </svg>
+                </div>
+                <h3><span class="size-label">48×48</span></h3>
+                <p>Extension management page</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="icon-container">
+        <h2>128x128 Icon (Chrome Web Store)</h2>
+        <div class="icon-grid">
+            <div class="icon-item">
+                <div class="preview-bg">
+                    <svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#2196F3"/>
+                                <stop offset="100%" style="stop-color:#1976D2"/>
+                            </linearGradient>
+                        </defs>
+                        <rect width="128" height="128" fill="url(#iconGradient)" rx="16"/>
+                        <g stroke="#ffffff" stroke-width="3" fill="none" opacity="0.9">
+                            <line x1="32" y1="0" x2="32" y2="128"/>
+                            <line x1="64" y1="0" x2="64" y2="128"/>
+                            <line x1="96" y1="0" x2="96" y2="128"/>
+                            <line x1="0" y1="32" x2="128" y2="32"/>
+                            <line x1="0" y1="64" x2="128" y2="64"/>
+                            <line x1="0" y1="96" x2="128" y2="96"/>
+                        </g>
+                        <circle cx="64" cy="64" r="8" fill="#ffffff" opacity="0.8"/>
+                        <g stroke="#ffffff" stroke-width="2" fill="none" opacity="0.6">
+                            <circle cx="64" cy="64" r="20"/>
+                            <circle cx="64" cy="64" r="32"/>
+                        </g>
+                    </svg>
+                </div>
+                <h3><span class="size-label">128×128</span></h3>
+                <p>Chrome Web Store listing</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="download-section">
+        <h2>Download Instructions</h2>
+        <p>To save these icons for your extension:</p>
+        <ol>
+            <li><strong>Right-click</strong> on each icon above</li>
+            <li>Select <strong>"Save image as..."</strong></li>
+            <li>Save as PNG files with these exact names:
+                <ul>
+                    <li><code>icon16.png</code> (16×16 icon)</li>
+                    <li><code>icon48.png</code> (48×48 icon)</li>
+                    <li><code>icon128.png</code> (128×128 icon)</li>
+                </ul>
+            </li>
+            <li>Place all three files in your extension folder</li>
+        </ol>
+        
+        <button class="download-btn" onclick="downloadIcon(16)">Download 16×16 PNG</button>
+        <button class="download-btn" onclick="downloadIcon(48)">Download 48×48 PNG</button>
+        <button class="download-btn" onclick="downloadIcon(128)">Download 128×128 PNG</button>
+    </div>
+    
+    <script>
+        function downloadIcon(size) {
+            // Create canvas element
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = size;
+            canvas.height = size;
+            
+            // Get the SVG element
+            const svgs = document.querySelectorAll('svg');
+            let targetSvg;
+            
+            svgs.forEach(svg => {
+                if (svg.getAttribute('width') == size) {
+                    targetSvg = svg;
+                }
+            });
+            
+            if (!targetSvg) return;
+            
+            // Convert SVG to image
+            const svgData = new XMLSerializer().serializeToString(targetSvg);
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const svgUrl = URL.createObjectURL(svgBlob);
+            
+            const img = new Image();
+            img.onload = function() {
+                ctx.drawImage(img, 0, 0);
+                URL.revokeObjectURL(svgUrl);
+                
+                // Download the canvas as PNG
+                canvas.toBlob(function(blob) {
+                    const link = document.createElement('a');
+                    link.download = `icon${size}.png`;
+                    link.href = URL.createObjectURL(blob);
+                    link.click();
+                    URL.revokeObjectURL(link.href);
+                });
+            };
+            img.src = svgUrl;
+        }
+    </script>
+</body>
+</html>
