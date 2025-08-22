@@ -6,13 +6,6 @@
   "author": "Endrit Shabani",
   "homepage_url": "https://github.com/endrits079/layout-grid-chrome-extension",
   "permissions": ["activeTab", "storage", "scripting"],
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["content.js"],
-      "css": ["grid.css"]
-    }
-  ],
   "action": {
     "default_popup": "popup.html",
     "default_title": "Grid Overlay Tool"
