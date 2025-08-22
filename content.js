@@ -18,10 +18,10 @@ const GRID_CONFIG = {
   DEFAULTS: {
     columns: 12,
     rows: 8,
-    spacing: 20,
+    spacing: 10,
     color: '#ff0000',
     opacity: 0.3,
-    type: 'columns'
+    type: 'spacing'
   }
 };
 

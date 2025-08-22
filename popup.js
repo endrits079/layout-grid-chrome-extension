@@ -8,10 +8,10 @@
 // Configuration constants
 const CONFIG = {
   DEFAULTS: {
-    type: 'columns',
+    type: 'spacing',
     columns: 12,
     rows: 8,
-    spacing: 20,
+    spacing: 10,
     color: '#ff0000',
     opacity: 0.3
   },
