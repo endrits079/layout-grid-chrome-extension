@@ -10,6 +10,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const status = document.getElementById("status");
   const rowsControl = document.getElementById("rowsControl");
   const spacingControl = document.getElementById("spacingControl");
+  const columnsRowsControl = document.getElementById("columnsRowsControl");
+  const colorLabel = document.getElementById("colorLabel");
 
   // Load saved settings
   chrome.storage.sync.get(["gridSettings"], (result) => {
@@ -21,6 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
       spacing.value = settings.spacing || 20;
       color.value = settings.color || "#ff0000";
       opacity.value = settings.opacity || 0.3;
+      updateColorDisplay();
       updateControlVisibility();
     }
   });
@@ -88,15 +91,37 @@ document.addEventListener("DOMContentLoaded", () => {
   // Update control visibility based on grid type
   gridType.addEventListener("change", updateControlVisibility);
 
+  // Update color picker settings and save to storage
+  color.addEventListener("change", () => {
+    updateColorDisplay();
+    chrome.storage.sync.set({ 
+      gridSettings: {
+        type: gridType.value,
+        columns: parseInt(columns.value),
+        rows: parseInt(rows.value),
+        spacing: parseInt(spacing.value),
+        color: color.value,
+        opacity: parseFloat(opacity.value)
+      }
+    });
+  });
+
+  function updateColorDisplay() {
+    colorLabel.style.setProperty('--selected-color', color.value);
+  }
+
   function updateControlVisibility() {
     const type = gridType.value;
+    
     if (type === "spacing") {
-      rowsControl.style.display = "none";
+      columnsRowsControl.style.display = "none";
       spacingControl.style.display = "block";
     } else if (type === "columns") {
+      columnsRowsControl.style.display = "block";
       rowsControl.style.display = "none";
       spacingControl.style.display = "none";
     } else {
+      columnsRowsControl.style.display = "block";
       rowsControl.style.display = "block";
       spacingControl.style.display = "none";
     }

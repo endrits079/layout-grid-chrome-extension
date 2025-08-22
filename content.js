@@ -48,6 +48,7 @@ function createGrid(settings) {
 
   gridOverlay.style.borderColor = color;
   gridOverlay.style.opacity = opacity;
+  gridOverlay.style.setProperty('--grid-color', color);
 
   // Add grid items for column/row grid
   if (type !== "spacing") {
