@@ -1,14 +1,38 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <style>
+      :root {
+        --primary-color: #2196f3;
+        --primary-hover: #1976d2;
+        --success-color: #4caf50;
+        --success-hover: #45a049;
+        --error-color: #f44336;
+        --error-hover: #da190b;
+        --background-color: #f5f5f5;
+        --surface-color: #ffffff;
+        --text-primary: #333;
+        --text-secondary: #555;
+        --text-muted: #666;
+        --border-color: #ddd;
+        --shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        --border-radius: 4px;
+        --border-radius-large: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
       body {
         width: 300px;
         padding: 20px;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         margin: 0;
-        background: #f5f5f5;
+        background: var(--background-color);
+        line-height: 1.4;
       }
 
       .header {
@@ -19,34 +43,47 @@
       .header h1 {
         margin: 0;
         font-size: 18px;
-        color: #333;
+        color: var(--text-primary);
+        font-weight: 600;
       }
 
       .control-group {
         margin-bottom: 15px;
-        background: white;
+        background: var(--surface-color);
         padding: 15px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: var(--border-radius-large);
+        box-shadow: var(--shadow);
+        border: 1px solid transparent;
+        transition: border-color 0.2s ease;
       }
 
       .control-group label {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 8px;
         font-weight: 500;
-        color: #555;
+        color: var(--text-secondary);
         font-size: 12px;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       .control-group input,
       .control-group select {
         width: 100%;
-        padding: 8px;
-        border: 1px solid #ddd;
-        border-radius: 4px;
+        padding: 10px 12px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--border-radius);
         font-size: 14px;
-        box-sizing: border-box;
+        font-family: inherit;
+        background: var(--surface-color);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .control-group input:focus,
+      .control-group select:focus {
+        outline: none;
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
       }
 
       .control-row {
@@ -60,56 +97,94 @@
 
       .toggle-btn {
         width: 100%;
-        padding: 12px;
-        background: #4caf50;
+        padding: 14px;
+        background: var(--success-color);
         color: white;
         border: none;
         border-radius: 6px;
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 600;
         cursor: pointer;
-        margin-bottom: 10px;
-        transition: background 0.2s;
+        margin-bottom: 15px;
+        transition: all 0.2s ease;
+        font-family: inherit;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
       }
 
       .toggle-btn:hover {
-        background: #45a049;
+        background: var(--success-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+      }
+
+      .toggle-btn:active {
+        transform: translateY(0);
       }
 
       .toggle-btn.off {
-        background: #f44336;
+        background: var(--error-color);
       }
 
       .toggle-btn.off:hover {
-        background: #da190b;
+        background: var(--error-hover);
+        box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
       }
 
       .apply-btn {
         width: 100%;
-        padding: 10px;
-        background: #2196f3;
+        padding: 12px;
+        background: var(--primary-color);
         color: white;
         border: none;
-        border-radius: 4px;
+        border-radius: var(--border-radius);
         font-size: 14px;
+        font-weight: 500;
         cursor: pointer;
-        transition: background 0.2s;
+        transition: all 0.2s ease;
+        font-family: inherit;
       }
 
       .apply-btn:hover {
-        background: #1976d2;
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+      }
+
+      .apply-btn:active {
+        transform: translateY(0);
+      }
+
+      .apply-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: none;
       }
 
       .status {
         text-align: center;
-        margin-top: 10px;
+        margin-top: 12px;
         font-size: 12px;
-        color: #666;
+        color: var(--text-muted);
+        font-weight: 500;
+        min-height: 16px;
+        transition: color 0.2s ease;
+      }
+
+      .status.success {
+        color: var(--success-color);
+      }
+
+      .status.error {
+        color: var(--error-color);
       }
 
       #colorLabel {
         position: relative;
-        padding-left: 20px;
+        padding-left: 24px;
+        display: flex;
+        align-items: center;
       }
 
       #colorLabel::before {
@@ -118,11 +193,59 @@
         left: 0;
         top: 50%;
         transform: translateY(-50%);
-        width: 12px;
-        height: 12px;
+        width: 14px;
+        height: 14px;
         border-radius: 50%;
         background-color: var(--selected-color, #ff0000);
-        border: 1px solid #ccc;
+        border: 2px solid var(--surface-color);
+        box-shadow: 0 0 0 1px var(--border-color), var(--shadow);
+        transition: all 0.2s ease;
+      }
+
+      input[type="color"] {
+        width: 40px;
+        height: 40px;
+        border: none;
+        border-radius: var(--border-radius);
+        cursor: pointer;
+        padding: 0;
+        background: none;
+      }
+
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        height: 6px;
+        background: var(--border-color);
+        border-radius: 3px;
+        outline: none;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 18px;
+        height: 18px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        box-shadow: var(--shadow);
+        transition: all 0.2s ease;
+      }
+
+      input[type="range"]::-webkit-slider-thumb:hover {
+        transform: scale(1.1);
+        background: var(--primary-hover);
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        cursor: pointer;
+        border: none;
+        box-shadow: var(--shadow);
       }
     </style>
   </head>

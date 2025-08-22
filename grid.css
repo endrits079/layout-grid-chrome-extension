@@ -1,36 +1,136 @@
+/**
+ * Grid Overlay Extension - Main Styles
+ * Professional grid overlay styling for web development
+ */
+
 #grid-overlay-extension {
+  /* Position and layout */
   position: fixed !important;
   top: 0 !important;
   left: 0 !important;
   width: 100vw !important;
   height: 100vh !important;
-  pointer-events: none !important;
-  z-index: 999999 !important;
+  
+  /* Display properties */
   display: none;
   gap: 0 !important;
+  
+  /* Reset styles */
   margin: 0 !important;
   padding: 0 !important;
   box-sizing: border-box !important;
+  
+  /* Interaction */
+  pointer-events: none !important;
+  
+  /* Layering */
+  z-index: 999999 !important;
+  
+  /* Performance optimization */
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
+/**
+ * Spacing grid implementation
+ * Creates a uniform spacing grid using CSS gradients
+ */
 #grid-overlay-extension.spacing-grid {
-  background-image: linear-gradient(to right, var(--grid-color, #ff0000) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-color, #ff0000) 1px, transparent 1px) !important;
+  background-image: 
+    linear-gradient(
+      to right, 
+      var(--grid-color, #ff0000) 1px, 
+      transparent 1px
+    ), 
+    linear-gradient(
+      to bottom, 
+      var(--grid-color, #ff0000) 1px, 
+      transparent 1px
+    ) !important;
   background-repeat: repeat !important;
+  background-position: 0 0, 0 0 !important;
 }
 
+/**
+ * Grid items for column and full grid layouts
+ * Individual cells that make up the grid structure
+ */
 #grid-overlay-extension .grid-item {
+  /* Border setup */
   border: 1px solid transparent !important;
   border-right-color: inherit !important;
   border-bottom-color: inherit !important;
+  
+  /* Box model */
   box-sizing: border-box !important;
   margin: 0 !important;
   padding: 0 !important;
+  
+  /* Reset styles */
+  background: transparent !important;
+  outline: none !important;
+  
+  /* Performance */
+  contain: layout style paint;
 }
 
-#grid-overlay-extension .grid-item:nth-child(-n + 12) {
+/**
+ * Top border for first row items
+ * Ensures complete grid outline
+ */
+#grid-overlay-extension .grid-item:nth-child(-n + 50) {
   border-top-color: inherit !important;
 }
 
-#grid-overlay-extension .grid-item:nth-child(12n + 1) {
+/**
+ * Left border for first column items
+ * Creates left edge of grid
+ */
+#grid-overlay-extension .grid-item:nth-child(50n + 1) {
   border-left-color: inherit !important;
+}
+
+/**
+ * Responsive grid adjustments
+ * Handles different column counts dynamically
+ */
+@media (max-width: 768px) {
+  #grid-overlay-extension {
+    /* Slightly lower z-index on mobile to avoid conflicts */
+    z-index: 999998 !important;
+  }
+}
+
+/**
+ * High contrast mode support
+ * Ensures grid visibility in accessibility modes
+ */
+@media (prefers-contrast: high) {
+  #grid-overlay-extension.spacing-grid {
+    background-image: 
+      linear-gradient(
+        to right, 
+        var(--grid-color, #000000) 2px, 
+        transparent 2px
+      ), 
+      linear-gradient(
+        to bottom, 
+        var(--grid-color, #000000) 2px, 
+        transparent 2px
+      ) !important;
+  }
+  
+  #grid-overlay-extension .grid-item {
+    border-width: 2px !important;
+  }
+}
+
+/**
+ * Reduced motion support
+ * Respects user's motion preferences
+ */
+@media (prefers-reduced-motion: reduce) {
+  #grid-overlay-extension {
+    will-change: auto;
+  }
 }
